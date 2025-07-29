@@ -1,0 +1,32 @@
+.container{
+    width: 700px;
+    margin: 0 auto;
+}
+.book-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 700px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 700px;
+}
+
+td, th {
+  border: 1px solid #c5c5c5;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.delete-book-from-array{
+  background-color: red;
+  
+}
