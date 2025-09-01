@@ -11,16 +11,50 @@ class Library{
 }
 
 const table = document.querySelector(".table-class");
-document.querySelector(".book-form").addEventListener("submit", addBookToLibrary);
+const form = document.querySelector(".book-form");
+const errorElement = document.getElementById('error');
+form.addEventListener("submit", (e) =>{
+  let messages = [];
+  
+  const author = document.getElementById("author");
+  const title = document.getElementById("title");
+  const pages = document.getElementById("pages");
+  const read = document.getElementById("read");
 
-function addBookToLibrary(event) {
-  event.preventDefault();
+  if (author.value === '' || author.value == null){
+    messages.push('Author is required');
+  }
+  else if (/\d/.test(author.value)) {
+    messages.push('Author name cannot contain numbers');
+  }
+  if (title.value === '' || title.value == null){
+    messages.push('Book title is required');
+  }
+  if (pages.value === '' || pages.value == null){
+    messages.push('Pages are required');
+  }
+  else if (pages.value.length > 4){
+    messages.push('Pages number is too big');
+  }
+
+  if (messages.length > 0){
+    e.preventDefault();
+    errorElement.innerText = messages.join('\n');
+  }
+  else {
+    e.preventDefault();
+    errorElement.innerText = ''; 
+    addBookToLibrary(author, title, pages, read, form);
+  }
+});
+
+function addBookToLibrary(author, title, pages, read, form) {
 
   const newBook = new Library(
-    document.getElementById("author").value,
-    document.getElementById("title").value,
-    document.getElementById("pages").value,
-    document.getElementById("read").value
+    author.value,
+    title.value,
+    pages.value,
+    read.value
   );
   myLibrary.push(newBook);
 
@@ -37,14 +71,14 @@ function addBookToLibrary(event) {
   const deleteCell = document.createElement("th");
   const deleteBook = document.createElement("button");
   deleteBook.className = "delete-book-from-array";
-  deleteBook.textContent = "X";
+  deleteBook.textContent = "x";
   deleteBook.dataset.index = idValue;
   deleteBook.addEventListener("click", deleteBookFromLibrary);
   deleteCell.appendChild(deleteBook);
   tablerow.appendChild(deleteCell);
 
   table.appendChild(tablerow);
-  event.target.reset();
+  form.reset();
 }
 
 function deleteBookFromLibrary(event){
@@ -58,5 +92,4 @@ function deleteBookFromLibrary(event){
     }
   }
 }
-
 

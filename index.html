@@ -10,21 +10,37 @@
     <div class="container">
         <div class="btn-class">
             <form class="book-form">
-                <input type="text" placeholder="Author of the book" id="author" required>
-                <input type="text" placeholder="Book title" id="title" required>
-                <input type="number" placeholder="Number of pages in the book" id="pages" required>
-                <input type="text" placeholder="Has the book been read?" id="read" required>
-                <button type="submit" class="add-book-btn">Add Book to your Library</button>
+                <label>Author of the book:</label>
+                <input type="text" id="author">
+                <label>Book title:</label>
+                <input type="text" id="title">
+                <label>Number of pages:</label>
+                <input type="number" id="pages">
+                <label>Was the book read?</label>
+                <select id="read" name="read">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+                <button type="submit" class="add-book-btn">Add Book</button>
             </form>
+            <div id="error">
+            </div>
         </div>
         <div class="book-container">
             <table class="table-class">
+                <colgroup>
+                    <col width="15%"/>
+                    <col width="30%"/>
+                    <col width="20%"/>
+                    <col width="10%"/>
+                    <col width="5%"/>
+                </colgroup>
                 <tr>
                     <th>Author</th>
                     <th>Title</th>
-                    <th>Number of pages</th>
-                    <th>Read?</th>
-                    <th></th>
+                    <th>Pages</th>
+                    <th>Read</th>
+                    <th class="read-col">del.</th>
                 </tr>
             </table>
         </div>
